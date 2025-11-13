@@ -3,7 +3,7 @@ from app import db
 class login(db.Model):
     __tablename__ = 'login'
     email = db.Column(db.String(100), primary_key=True)
-    password = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(100), nullable=False) 
     role = db.Column(db.String(50), nullable=False)
 
 try:
@@ -18,3 +18,10 @@ try:
 except Exception as e:
     print("Error checking/creating superuser:", e)
     db.session.rollback()
+
+
+    def check_password(self, password):
+        return self.password == password 
+    # In production, use hashed passwords
+
+
